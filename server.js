@@ -12,6 +12,7 @@ app.use(morgan("dev")); // log all the server requests
 //router
 import userRouter from "./src/routers/userRouter.js";
 app.use("/users", userRouter);
+
 //request handler
 app.use("/", (req, res) => {
   res.json({
