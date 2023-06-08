@@ -9,6 +9,9 @@ const PORT = 8000;
 app.use(cors()); // allow cross origin access from different server frontend app
 app.use(morgan("dev")); // log all the server requests
 
+//db connection
+import { connectDB } from "./src/config/dbConfig.js";
+connectDB();
 //router
 import userRouter from "./src/routers/userRouter.js";
 app.use("/users", userRouter);
