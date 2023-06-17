@@ -3,11 +3,9 @@ dotenv.config();
 import express from "express";
 const app = express();
 import cors from "cors";
-import morgan from "morgan";
 
 const PORT = process.env.PORT || 8000;
 import { connectDB } from "./src/config/dbConfig.js";
-
 connectDB();
 
 //middlewares

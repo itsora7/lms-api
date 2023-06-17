@@ -4,12 +4,13 @@ export const connectDB = async () => {
   try {
     // const mongoUrl = "mongodb://127.0.0.1:27017/LMS_api";
 
-    if (!process.env.mongoUrl) {
+    if (!process.env.MONGO_URL) {
       return console.log(
         "Mongo_URL is not defined. Please provide a connection"
       );
     }
-    const conn = await mongoose.connect(process.env.mongoUrl);
+    mongoose.set("strictQuery", true);
+    const conn = await mongoose.connect(process.env.MONGO_URL);
 
     conn
       ? console.log("Mongo database connected successfully")

@@ -1,20 +1,22 @@
 import express from "express";
-const router = express.Router(); // get post method
+import { getUserByEmail } from "../models/userModel.js";
 
-router.get("/", (req, res) => {
+const router = express.Router();
+
+//create new user
+
+router.post("/", async (req, res, next) => {
+  const { email } = req.body;
   try {
-    //get all the data from db and return
-    res.json({
-      status: "success",
-      message: "Here are the users",
-    });
-  } catch (error) {
-    console.log(error);
-    res.json({
-      status: "success",
-      message: error.message,
-    });
-  }
-});
+    const userExist = await getUserByEmail(email);
+    if (userExist) {
+      return res.json({
+        status: "error",
+        message: "User already exists! Please log in",
+      });
+    }
 
-export default router;
+    //encrypt password
+    
+  } catch (error) {}
+});
